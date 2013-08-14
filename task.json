@@ -1,7 +1,7 @@
 {
     "global": {
 
-        "task_name": "New Task Template",
-        "task_slug": "new_task_template"
+        "task_name": "The Angles of a Triangle",
+        "task_slug": "triangle-angles"
     }
 }
