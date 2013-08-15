@@ -42,7 +42,7 @@ api.add_listener(
             'python-27': cover_codes.unwrap_args,  # or None
             'python-3': cover_codes.unwrap_args
         },
-        checker=None,  # checkers.float.comparison(2)
+        checker=None,
         add_allowed_modules=[],
         add_close_buildins=[],
         remove_allowed_modules=[]

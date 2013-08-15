@@ -7,30 +7,23 @@ Each test is dict with
     "explanation" -- not necessary key, it's using for additional info in animation.
 """
 
-
 TESTS = {
     "Basics": [
-        {
-            "input": [2, 3],
-            "answer": 5,
-            "explanation": "2+3=?"
-        },
-        {
-            "input": [2, 7],
-            "answer": 9,
-            "explanation": "2+7=?"
-        }
+        {"input": [4, 4, 4], "answer": [60, 60, 60], "explanation": ""},
+        {"input": [3, 4, 5], "answer": [37, 53, 90], "explanation": ""},
+        {"input": [2, 2, 5], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [5, 4, 3], "answer": [37, 53, 90], "explanation": ""},
+        {"input": [10, 20, 30], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [11, 20, 30], "answer": [11, 20, 149], "explanation": ""},
+        {"input": [3, 3, 2], "answer": [39, 71, 71], "explanation": ""},
+        {"input": [100, 100, 100], "answer": [60, 60, 60], "explanation": ""},
+        {"input": [15, 14, 19], "answer": [47, 51, 82], "explanation": ""},
+        {"input": [7, 4, 8], "answer": [30, 61, 89], "explanation": ""}
     ],
-    "Additional": [
-        {
-            "input": [6, 3],
-            "answer": 9,
-            "explanation": "6+3=?"
-        },
-        {
-            "input": [6, 7],
-            "answer": 13,
-            "explanation": "6+7=?"
-        }
+    "Extra": [
+        {"input": [1000, 1000, 1000], "answer": [60, 60, 60], "explanation": ""},
+        {"input": [50, 40, 30], "answer": [37, 53, 90], "explanation": ""},
+        {"input": [100, 100, 1000], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [2, 3, 4], "answer": [29, 47, 104], "explanation": ""}
     ]
 }
