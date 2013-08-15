@@ -1,24 +1,21 @@
 <p>
     Given the lengths of the sides of a triangle. Need to find angles for this triangle.
-    If
-
+    If with given sides can not be formed a triangle, then return all angles as 0 (zero).
+    The angles should be represented as a list of integers in <strong>ascending order</strong>.
+    Each angle is measured in degrees and rounded an nearest integer number (Standard mathematical rounding).
 </p>
 
 <p style="text-align: center;">
-    <img class="for_info_only" title="triabgle-angles" src="{{task.get_user_media_folder}}triabgle-angles.png" alt="triabgle-angles" width="600px"/>
-    <img class="for_editor_only" title="triabgle-angles" src="{{task.get_user_media_folder}}triabgle-angles.png" alt="triabgle-angles" width="380px"/>
+    <img class="for_info_only" title="triangle-angles" src="{{task.get_user_media_folder}}/triangle-angles.png" alt="triangle-angles" width="600px"/>
+    <img class="for_editor_only" title="triangle-angles" src="{{task.get_user_media_folder}}/triangle-angles.png" alt="triangle-angles" width="380px"/>
 </p>
 
 <p>
-    Additional info
+    <strong>Input: </strong> The lengths of the sides of a triangle. Integers.
 </p>
 
 <p>
-    <strong>Input: </strong> Type of data.
-</p>
-
-<p>
-    <strong>Output: </strong> Type of data.
+    <strong>Output: </strong> Angles of a triangle in degrees. A sorted list of integers.
 </p>
 
 
@@ -27,5 +24,7 @@
     <p>
         <strong>Example:</strong>
     </p>
-    <pre class="brush: python">checkio(2, 2) == 4</pre>
+    <pre class="brush: python">checkio(4, 4, 4) == [60, 60, 60]
+checkio(3, 4, 5) == [37, 53, 90]
+checkio(2, 2, 5) == [0, 0, 0]</pre>
 </div>
