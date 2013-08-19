@@ -73,7 +73,10 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 $content.find('.call').html('Pass: checkio(' + ext.JSON.encode(checkioInput) + ')');
                 $content.find('.answer').remove();
             }
-
+            if (String(rightResult) !== "0,0,0") {
+                var canvas = new TriangleAnglesCanvas();
+                canvas.createCanvas($content.find(".explanation")[0], checkioInput);
+            }
 
             this_e.setAnimationHeight($content.height() + 60);
 
@@ -141,10 +144,53 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
         var colorGrey1 = "#EBEDED";
 
         var colorWhite = "#FFFFFF";
-        //Your Additional functions or objects inside scope
-        //
-        //
-        //
+
+
+        function TriangleAnglesCanvas() {
+            var x0 = 10;
+            var y0 = 10;
+            var fontSize = 16;
+            var max_units = 200;
+            var sizeX = max_units + 2 * x0;
+            var sizeY;
+
+            var attrLine = {"stroke": colorBlue4, "stroke-width": 4};
+            var attrText = {"stroke": colorBlue4, "font-size": fontSize, "font-family": "Verdana"};
+            var paper;
+
+            this.createCanvas = function(dom, sides) {
+                sides = sides.sort(function(a,b){return b-a});
+                var unit = max_units / sides[0];
+                var middle_point = sides[1] * (Math.pow(sides[0], 2) + Math.pow(sides[1], 2) - Math.pow(sides[2], 2)) / (2 * sides[0] * sides[1]);
+                var height = Math.sqrt(Math.pow(sides[1], 2) - Math.pow(middle_point, 2));
+                sizeY = 2 * y0 + fontSize + height * unit;
+                paper = Raphael(dom, sizeX, sizeY, 0, 0);
+                paper.path(Raphael.format(
+                    "M{0},{1}H{2}L{3},{4}L{0},{1}Z",
+                    x0,
+                    sizeY - y0 - fontSize,
+                    x0 + sides[0] * unit,
+                    x0 + middle_point * unit,
+                    sizeY - y0 - fontSize - height * unit
+                )).attr(attrLine);
+                paper.text(
+                    x0 + unit * sides[0] / 2,
+                    sizeY - y0,
+                    sides[0]).attr(attrText);
+                paper.text(
+                    -x0 + unit * middle_point / 2,
+                    sizeY - y0 - fontSize * 2 - unit * height / 2,
+                    sides[1]).attr(attrText);
+                paper.text(
+                    2.5 * x0 + unit * (sides[0] / 2 + middle_point / 2),
+                    sizeY - y0 - fontSize * 2 - unit * height / 2,
+                    sides[2]).attr(attrText);
+
+
+
+            }
+
+        }
 
 
     }
