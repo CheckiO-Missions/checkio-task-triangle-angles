@@ -157,5 +157,8 @@ fieldset[disabled] .btn {
     background-color: #eeeeee;
 }
 
+.input-side {
+    width: 50px;
+}
 /* Your CSS */
 /*          */
