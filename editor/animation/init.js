@@ -78,7 +78,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 canvas.createCanvas($content.find(".explanation")[0], checkioInput);
             }
 
-            this_e.setAnimationHeight($content.height() + 60);
+            this_e.setAnimationHeight($content.height() + 63);
 
         });
 
