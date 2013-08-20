@@ -63,14 +63,14 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             $content.find('.output').html('&nbsp;Your result:&nbsp;' + ext.JSON.encode(userResult));
 
             if (!result) {
-                $content.find('.call').html('Fail: checkio(' + ext.JSON.encode(checkioInput) + ')');
+                $content.find('.call').html('Fail: checkio(' + String(checkioInput) + ')');
                 $content.find('.answer').html('Right result:&nbsp;' + ext.JSON.encode(rightResult));
                 $content.find('.answer').addClass('error');
                 $content.find('.output').addClass('error');
                 $content.find('.call').addClass('error');
             }
             else {
-                $content.find('.call').html('Pass: checkio(' + ext.JSON.encode(checkioInput) + ')');
+                $content.find('.call').html('Pass: checkio(' + String(checkioInput) + ')');
                 $content.find('.answer').remove();
             }
             if (String(rightResult) !== "0,0,0") {
