@@ -120,7 +120,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 $tryit.find(".input-c").val(sideC);
 
                 //send it for check
-                this_e.sendToConsoleCheckiO([sideA, sideB, sideC]);
+                this_e.sendToConsoleCheckiO(sideA, sideB, sideC);
                 //After it will be called set_console_process_ret
                 e.stopPropagation();
                 return false;
