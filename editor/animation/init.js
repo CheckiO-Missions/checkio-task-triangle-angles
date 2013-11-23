@@ -91,7 +91,7 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             try {
                 ret = JSON.parse(ret);
             }
-            catch(err){}
+            catch (err) {}
 
             $tryit.find(".checkio-result-in").html(ext.JSON.encode(ret));
         });
@@ -106,13 +106,13 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                 var sideB = parseInt($tryit.find(".input-b").val());
                 var sideC = parseInt($tryit.find(".input-c").val());
 
-                if (isNaN(sideA)){
+                if (isNaN(sideA)) {
                     sideA = 3;
                 }
-                if (isNaN(sideB)){
+                if (isNaN(sideB)) {
                     sideB = 4;
                 }
-                if (isNaN(sideC)){
+                if (isNaN(sideC)) {
                     sideC = 5;
                 }
                 $tryit.find(".input-a").val(sideA);
@@ -128,25 +128,24 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
 
         });
 
-        var colorOrange4 = "#F0801A";
-        var colorOrange3 = "#FA8F00";
-        var colorOrange2 = "#FAA600";
-        var colorOrange1 = "#FABA00";
-
-        var colorBlue4 = "#294270";
-        var colorBlue3 = "#006CA9";
-        var colorBlue2 = "#65A1CF";
-        var colorBlue1 = "#8FC7ED";
-
-        var colorGrey4 = "#737370";
-        var colorGrey3 = "#D9E9E";
-        var colorGrey2 = "#C5C6C6";
-        var colorGrey1 = "#EBEDED";
-
-        var colorWhite = "#FFFFFF";
-
 
         function TriangleAnglesCanvas() {
+            var colorOrange4 = "#F0801A";
+            var colorOrange3 = "#FA8F00";
+            var colorOrange2 = "#FAA600";
+            var colorOrange1 = "#FABA00";
+
+            var colorBlue4 = "#294270";
+            var colorBlue3 = "#006CA9";
+            var colorBlue2 = "#65A1CF";
+            var colorBlue1 = "#8FC7ED";
+
+            var colorGrey4 = "#737370";
+            var colorGrey3 = "#D9E9E";
+            var colorGrey2 = "#C5C6C6";
+            var colorGrey1 = "#EBEDED";
+
+            var colorWhite = "#FFFFFF";
             var x0 = 10;
             var y0 = 10;
             var fontSize = 16;
@@ -158,8 +157,10 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             var attrText = {"stroke": colorBlue4, "font-size": fontSize, "font-family": "Verdana"};
             var paper;
 
-            this.createCanvas = function(dom, sides) {
-                sides = sides.sort(function(a,b){return b-a});
+            this.createCanvas = function (dom, sides) {
+                sides = sides.sort(function (a, b) {
+                    return b - a
+                });
                 var unit = max_units / sides[0];
                 var middle_point = sides[1] * (Math.pow(sides[0], 2) + Math.pow(sides[1], 2) - Math.pow(sides[2], 2)) / (2 * sides[0] * sides[1]);
                 var height = Math.sqrt(Math.pow(sides[1], 2) - Math.pow(middle_point, 2));
@@ -185,7 +186,6 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                     2.5 * x0 + unit * (sides[0] / 2 + middle_point / 2),
                     sizeY - y0 - fontSize * 2 - unit * height / 2,
                     sides[2]).attr(attrText);
-
 
 
             }
