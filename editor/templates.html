@@ -9,38 +9,11 @@
 
 <script type="text/template" id="template_tryit">
     <div class="tryit-content center-exp">
-        <table class="tool">
-            <tr>
-                <td colspan="3">
-                    Input the length of triangles' sides
+        <div class="tool">
+            <div class="tooltip center-exp">Make a triangle.</div>
+            <div id="tryit-canvas" class="tryit-canvas"></div>
+            <div class="checkio-result"></div>
 
-                </td>
-            </tr>
-            <tr>
-                <td>
-                    <label>a:</label>
-                    <input type="number" class="input-a input-side" min="1" value="3" name="a">
-                </td>
-                <td>
-                    <label>b:</label>
-                    <input type="number" class="input-b input-side" min="1" value="4" name="b">
-                </td>
-                <td>
-                    <label>c:</label>
-                    <input type="number" class="input-c input-side" min="1" value="5" name="c">
-                </td>
-            <tr>
-                <td colspan="3">
-                    <button class="bn-check btn">Calculate</button>
-                </td>
-            </tr>
-            <tr>
-                <td colspan="3" class="checkio-result">
-                    Result:<br>
-                    <span class="checkio-result-in">&nbsp;</span>
-                </td>
-            </tr>
-
-        </table>
+        </div>
     </div>
 </script>

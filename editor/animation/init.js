@@ -1,5 +1,5 @@
 //Dont change it
-requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
+requirejs(['ext_editor_1', 'jquery_190', 'raphael_212'],
     function (ext, $, TableComponent) {
 
         var cur_slide = {};
@@ -93,37 +93,17 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
             }
             catch (err) {}
 
-            $tryit.find(".checkio-result-in").html(ext.JSON.encode(ret));
+            $tryit.find(".checkio-result").html("Result:&nbsp;" + JSON.stringify(ret));
         });
 
         ext.set_generate_animation_panel(function (this_e) {
             $tryit = $(this_e.setHtmlTryIt(ext.get_template('tryit'))).find(".tryit-content");
 
-            //run checking
-            $tryit.find('.bn-check').click(function (e) {
-                //collect data from your tryit panel
-                var sideA = parseInt($tryit.find(".input-a").val());
-                var sideB = parseInt($tryit.find(".input-b").val());
-                var sideC = parseInt($tryit.find(".input-c").val());
+            var tCanvas = new TriangleAnglesCanvas();
+            tCanvas.createFeedbackCanvas($tryit.find(".tryit-canvas")[0], this_e);
 
-                if (isNaN(sideA)) {
-                    sideA = 3;
-                }
-                if (isNaN(sideB)) {
-                    sideB = 4;
-                }
-                if (isNaN(sideC)) {
-                    sideC = 5;
-                }
-                $tryit.find(".input-a").val(sideA);
-                $tryit.find(".input-b").val(sideB);
-                $tryit.find(".input-c").val(sideC);
-
-                //send it for check
-                this_e.sendToConsoleCheckiO(sideA, sideB, sideC);
-                //After it will be called set_console_process_ret
-                e.stopPropagation();
-                return false;
+            $tryit.find(".tryit-canvas").mousedown(function (e) {
+                e.preventDefault();
             });
 
         });
@@ -187,6 +167,109 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_210'],
                     sizeY - y0 - fontSize * 2 - unit * height / 2,
                     sides[2]).attr(attrText);
 
+
+            };
+
+            var attrBackLines = {"stroke": colorBlue1, "stroke-width": 1, "stroke-dasharray": "- "};
+            var attrEdge = {"stroke": colorBlue3, "stroke-width": 4, "stroke-linecap": "round"};
+            var attrPoint = {"stroke": colorBlue4, "stroke-width": 3, "fill": colorBlue4, "cursor": "pointer"};
+            var attrNumb = {"stroke": colorBlue4, "font-size": 25, "font-family": "Verdana"};
+
+            this.createFeedbackCanvas = function (dom, this_e) {
+                sizeX = 360;
+                sizeY = 180;
+                paper = Raphael(dom, sizeX, sizeY);
+
+                var ax = 60,
+                    ay = 150,
+                    bx = 240,
+                    by = 150,
+                    cx = 150,
+                    cy = 30;
+
+                for (var h = 15; h < sizeY; h += 15) {
+                    paper.path("M0," + h + "H" + (sizeX - 60)).attr(attrBackLines);
+                }
+                for (var v = 15; v < sizeX - 60; v += 15) {
+                    paper.path("M" + v + ",0V" + sizeY).attr(attrBackLines);
+                }
+                var aLine = paper.path(Raphael.format(
+                    "M{0},{1}L{2},{3}"),
+                    ax, ay, bx, by
+                ).attr(attrEdge);
+                var bLine = paper.path(Raphael.format(
+                    "M{0},{1}L{2},{3}"),
+                    bx, by, cx, cy
+                ).attr(attrEdge);
+                var cLine = paper.path(Raphael.format(
+                    "M{0},{1}L{2},{3}"),
+                    cx, cy, ax, ay
+                ).attr(attrEdge);
+                var activeEl = paper.rect(0, 0, sizeX - 30, sizeY).attr({"fill": colorWhite, "fill-opacity": 0, "stroke-width": 0});
+                var A = paper.circle(ax, ay, 7).attr(attrPoint);
+                var B = paper.circle(bx, by, 7).attr(attrPoint);
+                var C = paper.circle(cx, cy, 7).attr(attrPoint);
+
+                var aLength = paper.text(330, 30, Math.round(Math.sqrt(Math.pow(ax - bx, 2) + Math.pow(ay - by, 2)) / 15)).attr(attrNumb);
+                var bLength = paper.text(330, 90, Math.round(Math.sqrt(Math.pow(bx - cx, 2) + Math.pow(by - cy, 2)) / 15)).attr(attrNumb);
+                var cLength = paper.text(330, 150, Math.round(Math.sqrt(Math.pow(cx - ax, 2) + Math.pow(cy - ay, 2)) / 15)).attr(attrNumb);
+
+                var circles = paper.set(A, B, C);
+                var activeCircle = null;
+                var flag = false;
+
+                var connections = [
+                    [A, B, aLine, aLength],
+                    [B, C, bLine, bLength],
+                    [C, A, cLine, cLength],
+                ];
+
+                A.con = [0, 2];
+                B.con = [0, 1];
+                C.con = [1, 2];
+
+                circles.mousedown(function (e) {
+                    activeCircle = this;
+                    this.animate({fill: colorOrange4}, 200);
+                    activeEl.toFront();
+                    flag = true;
+                });
+
+                var restoreCircle = function () {
+                    if (activeCircle) {
+                        activeCircle.animate({fill: colorBlue4}, 200);
+                    }
+                    activeCircle = null;
+                    circles.toFront();
+                    if (flag) {
+                        flag = false;
+                        this_e.sendToConsoleCheckiO(Number(aLength.attr("text")), Number(bLength.attr("text")), Number(cLength.attr("text")));
+                    }
+                };
+
+                circles.mouseup(restoreCircle);
+                activeEl.mouseup(restoreCircle);
+                activeEl.mouseout(restoreCircle);
+
+                var moveCircle = function (e) {
+                    if (activeCircle) {
+                        activeCircle.attr({cx: e.offsetX - 10, cy: e.offsetY - 10});
+                        for (var i = 0; i < activeCircle.con.length; i++) {
+                            var con = connections[activeCircle.con[i]];
+                            con[2].attr("path", Raphael.format(
+                                "M{0},{1}L{2},{3}",
+                                con[0].attr("cx"),
+                                con[0].attr("cy"),
+                                con[1].attr("cx"),
+                                con[1].attr("cy")
+                            ));
+                            con[3].attr("text",
+                                Math.round(Math.sqrt(Math.pow(con[0].attr("cx") - con[1].attr("cx"), 2) + Math.pow(con[0].attr("cy") - con[1].attr("cy"), 2)) / 1.5) / 10);
+                        }
+                    }
+                };
+                circles.mousemove(moveCircle);
+                activeEl.mousemove(moveCircle);
 
             }
 
