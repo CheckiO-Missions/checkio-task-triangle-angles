@@ -23,6 +23,10 @@ TESTS = {
         {"input": [1000, 1000, 1000], "answer": [60, 60, 60], "explanation": ""},
         {"input": [50, 40, 30], "answer": [37, 53, 90], "explanation": ""},
         {"input": [100, 100, 1000], "answer": [0, 0, 0], "explanation": ""},
-        {"input": [2, 3, 4], "answer": [29, 47, 104], "explanation": ""}
+        {"input": [2, 3, 4], "answer": [29, 47, 104], "explanation": ""},
+        {"input": [80, 80, 60], "answer": [44, 68, 68], "explanation": ""},
+        {"input": [4, 6, 10], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [8, 6, 10], "answer": [37, 53, 90], "explanation": ""},
+        {"input": [395, 295, 295], "answer": [48, 48, 84], "explanation": ""},
     ]
 }
