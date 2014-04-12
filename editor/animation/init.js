@@ -137,7 +137,8 @@ requirejs(['ext_editor_1', 'jquery_190', 'raphael_212'],
             var attrText = {"stroke": colorBlue4, "font-size": fontSize, "font-family": "Verdana"};
             var paper;
 
-            this.createCanvas = function (dom, sides) {
+            this.createCanvas = function (dom, in_sides) {
+                var sides = in_sides.slice();
                 sides = sides.sort(function (a, b) {
                     return b - a
                 });
