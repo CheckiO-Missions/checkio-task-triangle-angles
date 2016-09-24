@@ -1,0 +1,52 @@
+﻿<p>
+    あなたには三角形の三辺の長さが与えられる。
+    この三角形の三つの角の角度をもとめること。
+    もしその三辺では三角形を作れない場合
+    (または縮退三角形になる場合)は全ての角度を0で返すこと。
+    角度は<strong>昇順</strong>の整数のリストで表し、
+    それぞれの角は度数で測り少数点以下は四捨五入すること。
+    (標準的な数学的四捨五入を行う)
+</p>
+
+<p style="text-align: center;">
+    <img class="for_info_only" title="triangle-angles" src="{{MEDIA}}triangle-angles.png" alt="triangle-angles" width="600px"/>
+    <img class="for_editor_only" title="triangle-angles" src="{{MEDIA}}triangle-angles.png" alt="triangle-angles" width="380px"/>
+</p>
+
+<p>
+    <strong>入力: </strong> 三角形の三辺の長さ。(integer型)
+</p>
+
+<p>
+    <strong>出力: </strong> 三つの角の度数(integer型のリスト。※昇順)
+</p>
+
+
+
+<div class="for_info_only">
+    <p>
+        <strong>例:</strong>
+    </p>
+    <pre class="brush: python">checkio(4, 4, 4) == [60, 60, 60]
+checkio(3, 4, 5) == [37, 53, 90]
+checkio(2, 2, 5) == [0, 0, 0]</pre>
+</div>
+
+
+<p class="for_info_only">
+    <strong>どのように使われるか: </strong>
+    これは古典的な幾何学の問題である。
+    この手法は地形学や建築で利用される。
+    あなたはこれにより分度器を使用せずに角度を測ることが可能である。
+</p>
+
+<p>
+    <strong>事前条件: </strong><br>
+    0 &lt; a,b,c &le; 1000
+        </p>
+
+
+<p class="for_info_only">
+    <strong>TryIt の使い方: </strong><br>
+    <iframe width="560" height="315" src="//www.youtube.com/embed/uudoafF8jas" frameborder="0" allowfullscreen></iframe>
+</p>
