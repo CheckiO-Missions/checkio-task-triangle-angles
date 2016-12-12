@@ -1,0 +1,14 @@
+"use strict";
+
+function triangleAngles(a, b, c){
+    return [0, 0, 0]
+}
+
+var assert = require('assert');
+
+if (!global.is_checking) {
+    assert.equal(triangleAngles(4, 4, 4), [60, 60, 60], "All sides are equal");
+    assert.equal(triangleAngles(3, 4, 5), [37, 53, 90], "Egyptian triangle");
+    assert.equal(triangleAngles(2, 2, 5), [0, 0, 0], "It's can not be a triangle");
+    console.log("Coding complete? Click 'Check' to review your tests and earn cool rewards!");
+}

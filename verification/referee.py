@@ -40,5 +40,10 @@ api.add_listener(
         tests=TESTS,
         cover_code={
             'python-27': cover_codes.unwrap_args,  # or None
-            'python-3': cover_codes.unwrap_args
+            'python-3': cover_codes.unwrap_args,
+            'js-node': cover_codes.js_unwrap_args
+        },
+        function_name={
+            "python": "checkio",
+            "js": "triangleAngles"
         }).on_ready)

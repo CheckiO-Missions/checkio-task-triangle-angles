@@ -8,8 +8,7 @@
 </p>
 
 <p style="text-align: center;">
-    <img class="for_info_only" title="triangle-angles" src="{{MEDIA}}triangle-angles.png" alt="triangle-angles" width="600px"/>
-    <img class="for_editor_only" title="triangle-angles" src="{{MEDIA}}triangle-angles.png" alt="triangle-angles" width="380px"/>
+    <img class="for_info_only" title="triangle-angles" src="{{MEDIA}}triangle-angles.png" alt="triangle-angles" style="max-height: 190px"/>
 </p>
 
 <p>
@@ -26,9 +25,15 @@
     <p>
         <strong>Example:</strong>
     </p>
+{% if interpreter.slug == "js-node" %}
+    <pre class="brush: python">triangleAngles(4, 4, 4) == [60, 60, 60]
+triangleAngles(3, 4, 5) == [37, 53, 90]
+triangleAngles(2, 2, 5) == [0, 0, 0]</pre>
+{% else %}
     <pre class="brush: python">checkio(4, 4, 4) == [60, 60, 60]
 checkio(3, 4, 5) == [37, 53, 90]
 checkio(2, 2, 5) == [0, 0, 0]</pre>
+{% endif %}
 </div>
 
 
