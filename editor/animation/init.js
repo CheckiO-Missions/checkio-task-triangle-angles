@@ -135,7 +135,7 @@ requirejs(['ext_editor_io', 'jquery_190', 'raphael_210'],
                     circles.toFront();
                     if (flag) {
                         flag = false;
-                        this_e.extSendToConsoleCheckiO([Number(aLength.attr("text")), Number(bLength.attr("text")), Number(cLength.attr("text"))]);
+                        this_e.extSendToConsoleCheckiO(Number(aLength.attr("text")), Number(bLength.attr("text")), Number(cLength.attr("text")));
                     }
                 };
 
