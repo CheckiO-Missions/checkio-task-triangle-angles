@@ -12,6 +12,8 @@ TESTS = {
         {"input": [4, 4, 4], "answer": [60, 60, 60], "explanation": ""},
         {"input": [3, 4, 5], "answer": [37, 53, 90], "explanation": ""},
         {"input": [2, 2, 5], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [2, 5, 2], "answer": [0, 0, 0], "explanation": ""},
+        {"input": [5, 2, 2], "answer": [0, 0, 0], "explanation": ""},
         {"input": [5, 4, 3], "answer": [37, 53, 90], "explanation": ""},
         {"input": [10, 20, 30], "answer": [0, 0, 0], "explanation": ""},
         {"input": [11, 20, 30], "answer": [11, 20, 149], "explanation": ""},
