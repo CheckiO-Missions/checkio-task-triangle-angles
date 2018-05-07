@@ -1,4 +1,6 @@
-def checkio(a, b, c):
+from typing import List
+
+def checkio(a: int, b: int, c: int) -> List[int]:
 
     #replace this for solution
     return [0, 0, 0]
